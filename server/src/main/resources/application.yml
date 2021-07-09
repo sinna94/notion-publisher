@@ -1,0 +1,3 @@
+notion:
+  basic-token: ${BASIC_TOKEN}
+  redirect-uri: ${REDIRECT_URI}
