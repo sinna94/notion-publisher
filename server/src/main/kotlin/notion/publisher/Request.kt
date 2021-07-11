@@ -14,6 +14,7 @@ private fun createHttpRequest(url: String, token: String): HttpRequest.Builder {
         )
         .header("Content-Type", "application/json")
         .header("Authorization", token)
+        .header("Notion-Version", NOTION_VERSION)
 }
 
 fun <T> postRequest(url: String, body: Map<String, String>, token: String, cls: Class<T>): T {

@@ -22,7 +22,7 @@ class AuthController {
 
     @GetMapping
     fun getAuth(
-        @RequestParam code: String
+        @RequestParam code: String,
     ): AuthResponse {
         val url = "$NOTION_API/oauth/token"
         val body = mapOf("grant_type" to "authorization_code", "code" to code, "redirect_uri" to redirectUri)
