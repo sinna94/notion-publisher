@@ -1,6 +1,7 @@
-import axios from "axios";
-import React, { ReactElement, useEffect } from "react";
-import { getAccessToken, setSessionStorage } from "./Storage";
+import React, { ReactElement, useEffect, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { get } from "./request/request";
+import { setSessionStorage } from "./Storage";
 
 interface AuthResponse {
     accessToken: string;
@@ -11,30 +12,35 @@ interface AuthResponse {
 }
 
 export const Auth = (): ReactElement => {
+
+    const [isAuth, setIsAuth] = useState(false);
+
     useEffect(() => {
-        const getAuth = async () => {
+        const fetchAuth = async () => {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
             const code = urlParams.get('code');
 
-            const response = await axios.get<AuthResponse>('/auth', { params: { code } })
+            const params = { code }
+            const response = await get<AuthResponse>('/auth', { params })
             if (response.status === 200) {
                 Object.entries(response.data).forEach(([key, value]: [string, string]) => {
                     setSessionStorage(key, value);
                 })
             }
         }
-        getAuth();
+        try {
+            fetchAuth();
+            setIsAuth(true);
+        } catch (e) {
+            console.error(e);
+        }
     }, [])
-
-    const onClickButton = async () => {
-        await axios.get('/page/search', { params: { 'accessToken': getAccessToken() } })
-    }
 
     return (
         <>
-            <h2>Hi, Welcome Home!</h2>
-            <button type='button' onClick={onClickButton}>검색</button>
+            {isAuth && (<Redirect to={{ pathname: '/search' }} />)}
+            {!isAuth && (<h2>Hi, Welcome Home!</h2>)}
         </>
     )
 }
