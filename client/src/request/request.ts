@@ -15,7 +15,6 @@ const tokenConfig = (config?: AxiosRequestConfig): AxiosRequestConfig => {
 };
 
 export const get = async <T, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> => {
-  console.log(tokenConfig(config));
   const response = await axios.get<T, R>(url, tokenConfig(config));
   return response;
 };
