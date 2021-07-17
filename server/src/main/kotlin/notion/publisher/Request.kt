@@ -1,11 +1,9 @@
 package notion.publisher
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import notion.publisher.dto.AuthResponse
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
-import java.net.http.HttpResponse
 
 private fun createHttpRequest(url: String, token: String): HttpRequest.Builder {
     return HttpRequest.newBuilder()

@@ -18,7 +18,7 @@ interface Title {
     underline: boolean;
   };
   href: null;
-  plain_text: string;
+  'plain_text': string;
   text: {
     content: string;
     link: null;
@@ -28,9 +28,9 @@ interface Title {
 
 interface Result {
   archived: boolean;
-  created_time: string;
+  'created_time': string;
   id: string;
-  last_edited_time: string;
+  'last_edited_time': string;
   object: string;
   properties: {
     [name: string]: {
@@ -42,7 +42,7 @@ interface Result {
   };
   url: string;
   parent: {
-    database_id: string;
+    'database_id': string;
     type: string;
   };
 }
