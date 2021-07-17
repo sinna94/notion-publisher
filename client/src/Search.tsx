@@ -1,3 +1,4 @@
+import { title } from 'process';
 import React, { ReactElement, useState } from 'react';
 import { get } from './request/request';
 
@@ -33,12 +34,7 @@ interface Result {
   'last_edited_time': string;
   object: string;
   properties: {
-    [name: string]: {
-      id: string;
-      date?: { start: string; end: string | null };
-      title?: Title[];
-      type: string;
-    };
+    [name: string]: Property;
   };
   url: string;
   parent: {
@@ -46,6 +42,17 @@ interface Result {
     type: string;
   };
 }
+
+interface Property {
+  id: string;
+  date?: { start: string; end: string | null };
+  title?: Title[];
+  type: string;
+};
+
+const isTitleProperty = (property: Property): boolean => {
+  return (property.type === 'title' && (property.title?.length ?? 0) > 0);
+};
 
 export const Search = (): ReactElement => {
   const [searchResult, setSearchResult] = useState<SearchResponse | undefined>(undefined);
@@ -59,12 +66,38 @@ export const Search = (): ReactElement => {
     console.log(searchResult);
   };
 
+  const onClickPageId = async (pageId: string) => {
+    const params = { pageId }
+    const response = await get<any>('/page', { params });
+    console.log(response);
+  }
+
+  const printPageInfo = () => {
+    const titleList = searchResult?.results.map(result => {
+      const { properties } = result;
+      const titles = Object.values(properties).filter(isTitleProperty);
+
+      return { id: result.id, title: titles?.[0]?.title?.[0].plain_text ?? '제목 없음', type: result.object };
+    })
+
+    console.log(titleList);
+
+    return titleList?.map(titleInfo => {
+      return (
+        <p onClick={() => onClickPageId(titleInfo.id)}>
+          {titleInfo.title}
+        </p>
+      );
+    }
+    )
+  }
+
   return (
     <>
       <button type="button" onClick={onClickButton}>
         검색
       </button>
-      {searchResult && searchResult?.results.map((result) => <p>{result.id}</p>)}
+      {printPageInfo()}
     </>
   );
 };

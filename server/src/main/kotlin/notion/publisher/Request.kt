@@ -31,3 +31,20 @@ fun <T> postRequest(url: String, body: Map<String, String>, token: String, cls: 
 
     return response.body().get()
 }
+
+fun <T> getRequest(url: String, params: Map<String, String>, token: String, cls: Class<T>): T {
+
+    val urlWithParams = if (params.count() > 0) {
+        url + "?" + params.map { "${it.key}=${it.value}" }.joinToString("&")
+    } else {
+        url
+    }
+
+    val request = createHttpRequest(urlWithParams, token)
+        .GET()
+        .build()
+
+    val response = HttpClient.newHttpClient().send(request, JsonBodyHandler(cls))
+
+    return response.body().get()
+}
