@@ -1,6 +1,6 @@
 package notion.publisher.controller
 
-import notion.publisher.dto.PageResponse
+import notion.publisher.dto.Block
 import notion.publisher.service.PageService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -17,7 +17,7 @@ class PageController(
     fun getPage(
         @RequestParam accessToken: String,
         @RequestParam pageId: String,
-    ): Any {
-        return pageService.getPage(accessToken, pageId)
+    ): Block {
+        return pageService.getPageContent(accessToken, pageId)
     }
 }
