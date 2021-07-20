@@ -17,12 +17,10 @@ class PageService {
 
     fun getChildContent(token: String, block: Block) {
         block.results.forEach {
-            if (it.hasChildren) {
+            if (it.hasChildren && it.type !== BlockType.child_page) {
                 val child = requestPageContent(it.id, token)
-                if (child.type !== BlockType.child_page) {
-                    getChildContent(token, child)
-                    it.childrenList.add(child)
-                }
+                getChildContent(token, child)
+                it.childrenList.add(child)
             }
         }
     }
