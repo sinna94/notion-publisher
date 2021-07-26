@@ -67,7 +67,7 @@ enum Color {
     "red_background"
 }
 
-interface RichTextObject {
+export interface RichTextObject {
     'plain_text': string;
     href: string | undefined;
     annotations: {
