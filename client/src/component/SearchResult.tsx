@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import { get } from '../request/request';
-import { BlockType, Content, Property, Result, RichTextObject } from '../interface';
+import { BlockType, Color, Content, Property, Result, RichTextObject } from '../interface';
+import { Preview } from './Preview';
 
 interface Props {
     pageInfoList: Result[];
 }
 
 export const PageInfo = (props: Props) => {
+    const [pageHtml, setPageHtml] = useState('');
+
     const { pageInfoList } = props;
 
     const isTitleProperty = (property: Property): boolean => {
@@ -100,11 +104,14 @@ export const PageInfo = (props: Props) => {
             }
             return tag;
         });
-        console.log(tagList);
+        const html = tagList.join('\n');
+        console.log(html);
+        setPageHtml(html);
     };
 
     return (
         <>
+            <Preview html={pageHtml} />
             {titleList?.map((titleInfo) => {
                 return <p onClick={() => onClickPageId(titleInfo.id)}>{titleInfo.title}</p>;
             })}
@@ -113,35 +120,39 @@ export const PageInfo = (props: Props) => {
 };
 function parseText(text: RichTextObject) {
     //   const classNames = parseClassNames(text);
+    let tag = '';
 
-    let tag = "";
+    const { annotations, plain_text, href } = text;
+    const { bold, code, color, italic, strikethrough, underline } = annotations;
+    const colorText = parseColor(color, plain_text);
 
-    const { annotations, plain_text } = text;
-    const { bold, code, color, italic, strikethrough, underline } = annotations
     if (bold) {
-        tag += `<strong>${plain_text}</strong>`
-    }
-    if (code) {
-        tag += `<code>${plain_text}</code>`
-    }
-    if (italic) {
-        tag += `<em>${plain_text}</em>`
-    }
-    if (strikethrough) {
-        tag += `<del>${plain_text}</del>`
-    }
-    if (underline) {
-        tag += `<span style="border-bottom:0.05em solid">${plain_text}</span>`
+        tag += `<strong>${colorText}</strong>`;
+    } else if (code) {
+        tag += `<code>${colorText}</code>`;
+    } else if (italic) {
+        tag += `<em>${colorText}</em>`;
+    } else if (strikethrough) {
+        tag += `<del>${colorText}</del>`;
+    } else if (underline) {
+        tag += `<span style="border-bottom:0.05em solid">${colorText}</span>`;
+    } else {
+        tag += `<span>${colorText}</span>`;
     }
 
-        const span = `<span>${text.plain_text}</span>`;
-    console.log(span);
-    return tag;
+    return parseLink(tag, href);
 }
 
-function parseClassNames(text: RichTextObject) {
-    return Object.entries(text.annotations)
-        .filter((_, value) => value)
-        .map((key) => { console.log(key); return key })
-        .join(' ');
+function parseLink(text: string, href: string | undefined) {
+    if (href) {
+        return `<a href=${href}>${text}</a>`;
+    }
+    return text;
+}
+
+function parseColor(color: Color, text: string) {
+    if (color === Color.default) {
+        return text;
+    }
+    return `<mark class='highlight-${color}'>${text}</mark>`;
 }

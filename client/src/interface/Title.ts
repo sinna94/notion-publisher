@@ -8,7 +8,7 @@ export interface Title {
     underline: boolean;
   };
   href: null;
-  'plain_text': string;
+  plain_text: string;
   text: {
     content: string;
     link: null;
