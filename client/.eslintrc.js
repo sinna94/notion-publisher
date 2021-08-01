@@ -28,5 +28,6 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'array-callback-return': 'off',
     'camelcase': 'off',
+    'no-case-declarations': 'off',
   },
 };

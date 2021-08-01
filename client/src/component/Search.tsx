@@ -9,10 +9,8 @@ export const Search = (): ReactElement => {
   const onClickButton = async () => {
     const response = await get<SearchResponse>('/search');
     if (response?.data) {
-      console.log(response.data);
       setSearchResult(response.data);
     }
-    console.log(searchResult);
   };
 
   return (
