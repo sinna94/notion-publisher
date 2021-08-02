@@ -38,7 +38,7 @@ export const Auth = (): ReactElement => {
 
   return (
     <>
-      {isAuth && <Redirect to={{ pathname: '/search' }} />}
+      {isAuth && <Redirect to={{ pathname: '/' }} />}
       {!isAuth && <h2>Hi, Welcome Home!</h2>}
     </>
   );
