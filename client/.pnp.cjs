@@ -58,6 +58,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.3.2"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:17.0.2"],
+            ["react-infinite-scroller", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:1.2.4"],
             ["react-router-dom", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.2.0"],
             ["react-scripts", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:4.0.3"],
             ["sass", "npm:1.37.2"],
@@ -15122,6 +15123,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.3.2"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:17.0.2"],
+            ["react-infinite-scroller", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:1.2.4"],
             ["react-router-dom", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.2.0"],
             ["react-scripts", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:4.0.3"],
             ["sass", "npm:1.37.2"],
@@ -18497,6 +18499,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/react-error-overlay-npm-6.0.9-96e7e1e53a-695853bc88.zip/node_modules/react-error-overlay/",
           "packageDependencies": [
             ["react-error-overlay", "npm:6.0.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["react-infinite-scroller", [
+        ["npm:1.2.4", {
+          "packageLocation": "./.yarn/cache/react-infinite-scroller-npm-1.2.4-0aba70187b-6021df5b03.zip/node_modules/react-infinite-scroller/",
+          "packageDependencies": [
+            ["react-infinite-scroller", "npm:1.2.4"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:1.2.4", {
+          "packageLocation": "./.yarn/__virtual__/react-infinite-scroller-virtual-762b7739b5/0/cache/react-infinite-scroller-npm-1.2.4-0aba70187b-6021df5b03.zip/node_modules/react-infinite-scroller/",
+          "packageDependencies": [
+            ["react-infinite-scroller", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:1.2.4"],
+            ["@types/react", "npm:17.0.15"],
+            ["prop-types", "npm:15.7.2"],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "react"
           ],
           "linkType": "HARD",
         }]

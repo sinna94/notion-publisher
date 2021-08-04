@@ -2,7 +2,7 @@ import { Result } from './Result';
 
 export interface SearchResponse {
   hasMore: boolean;
-  nexrCursor: string | null;
+  nextCursor: string | undefined;
   object: string;
   results: Result[];
 }

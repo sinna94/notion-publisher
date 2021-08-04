@@ -1,26 +1,28 @@
 import { Col, Divider, List, Row } from 'antd';
 import { useState } from 'react';
-import { BlockType, Color, Content, Property, Result, RichTextObject } from '../interface';
+import InfiniteScroll from 'react-infinite-scroller';
+import { BlockType, Color, Content, Property, RichTextObject, SearchResponse } from '../interface';
 import { get } from '../request/request';
 import { Preview } from './Preview';
 
 interface Props {
-    pageInfoList: Result[];
-    getSearchResponse: (startCursor?: string) => void;
+    searchResult: SearchResponse | undefined;
+    getSearchResponse: (nextCursor?: string) => void;
 }
 
 const parentIdMap = new Map<string, number>();
 
 export const PageInfo: React.FC<Props> = (props: Props) => {
     const [pageHtml, setPageHtml] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    const { pageInfoList } = props;
+    const { searchResult } = props;
 
     const isTitleProperty = (property: Property): boolean => {
         return property.type === 'title' && (property.title?.length ?? 0) > 0;
     };
 
-    const titleList = pageInfoList.map((result) => {
+    const titleList = searchResult?.results.map((result) => {
         const { properties } = result;
         const titles = Object.values(properties).filter((prop) => isTitleProperty(prop));
 
@@ -39,28 +41,38 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
         }
     };
 
+    const handleInfiniteOnLoad = async () => {
+        // setLoading(true);
+        props.getSearchResponse(searchResult?.nextCursor);
+        // setLoading(false);
+    }
+
     return (
         <Row>
-            <Col flex='1 1 300px'>
-                <List
-                    dataSource={titleList}
-                    renderItem={titleInfo => (
-                        <List.Item
-                            key={titleInfo.id}
-                            onClick={() => onClickPageId(titleInfo.id)}
-                        >
-                            <List.Item.Meta
-                                title={titleInfo.title}
-                                description={titleInfo.updateAt}
-                            />
-                        </List.Item>
-                    )}
-
-                />
-                <Divider type='vertical' />
-            </Col>
             <Col flex='auto'>
-                <Preview html={pageHtml} />
+                <div style={{ 'height': 'calc(100vh - 150px)', 'overflow': 'auto' }}>
+                    <InfiniteScroll
+                        loadMore={handleInfiniteOnLoad}
+                        hasMore={!loading && searchResult?.hasMore}
+                    >
+                        <List
+                            dataSource={titleList}
+                            renderItem={titleInfo => (
+                                <List.Item
+                                    key={titleInfo.id}
+                                    onClick={() => onClickPageId(titleInfo.id)}
+                                >
+                                    <List.Item.Meta
+                                        title={titleInfo.title}
+                                        description={titleInfo.updateAt}
+                                    />
+                                </List.Item>
+                            )}
+
+                        />
+                    </InfiniteScroll>
+                </div>
+                <Divider type='vertical' />
             </Col>
         </Row >
     );

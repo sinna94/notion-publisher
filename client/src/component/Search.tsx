@@ -11,6 +11,7 @@ export const Search = (): ReactElement => {
     nextCursor?: string,
   ) => {
     const params = { nextCursor }
+    console.log(params);
     const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
       setSearchResult(response.data);
@@ -26,7 +27,7 @@ export const Search = (): ReactElement => {
       <button type="button" onClick={onClickButton}>
         검색
       </button>
-      <PageInfo pageInfoList={searchResult?.results ?? []} getSearchResponse={getSearchResponse} />
+      <PageInfo searchResult={searchResult} getSearchResponse={getSearchResponse} />
     </Layout>
   );
 };
