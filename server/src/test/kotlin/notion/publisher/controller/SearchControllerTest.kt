@@ -2,7 +2,6 @@ package notion.publisher.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import notion.publisher.dto.AuthResponse
 import notion.publisher.dto.SearchResponse
 import notion.publisher.service.SearchService
 import org.junit.jupiter.api.Test
@@ -11,7 +10,6 @@ import org.junit.jupiter.api.Assertions.*
 import org.mockito.Mockito
 import org.skyscreamer.jsonassert.JSONAssert
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
@@ -30,7 +28,7 @@ internal class SearchControllerTest {
 
     @Test
     fun searchPage() {
-        Mockito.`when`(searchService.searchPage("token", null))
+        Mockito.`when`(searchService.searchPage("token", null, nextCursor))
             .thenReturn(
                 SearchResponse(false, null, "", emptyList())
             )

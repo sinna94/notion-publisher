@@ -1,17 +1,24 @@
 import { ReactElement, useState } from 'react';
 import { get } from '../request';
 import { SearchResponse } from '../interface';
-import { PageInfo } from './SearchResult';
+import { PageInfo } from './PageInfo';
 import { Layout } from './Layout';
 
 export const Search = (): ReactElement => {
   const [searchResult, setSearchResult] = useState<SearchResponse | undefined>(undefined);
 
-  const onClickButton = async () => {
-    const response = await get<SearchResponse>('/search');
+  const getSearchResponse = async (
+    nextCursor?: string,
+  ) => {
+    const params = { nextCursor }
+    const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
       setSearchResult(response.data);
     }
+  }
+
+  const onClickButton = async () => {
+    await getSearchResponse();
   };
 
   return (
@@ -19,7 +26,7 @@ export const Search = (): ReactElement => {
       <button type="button" onClick={onClickButton}>
         검색
       </button>
-      <PageInfo pageInfoList={searchResult?.results ?? []} />
+      <PageInfo pageInfoList={searchResult?.results ?? []} getSearchResponse={getSearchResponse} />
     </Layout>
   );
 };

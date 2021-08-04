@@ -20,8 +20,12 @@ export const Layout: React.FC = (props) => {
 
   const { children } = props;
 
+  const style = {
+    'height': '100vh',
+  }
+
   return (
-    <AntdLayout className="layout">
+    <AntdLayout className="layout" style={style}>
       <Header style={{ direction: 'rtl' }}>
         <Menu theme="dark" mode="horizontal">
           <Menu.Item key='auth' onClick={onClickLogin} >노션 로그인</Menu.Item>

@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getAccessToken } from '../Storage';
+import { getAccessToken } from '../util/Storage';
 
 const tokenConfig = (config?: AxiosRequestConfig): AxiosRequestConfig => {
   const tokenParam = {

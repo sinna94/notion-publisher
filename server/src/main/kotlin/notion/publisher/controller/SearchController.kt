@@ -16,8 +16,9 @@ class SearchController(
     @GetMapping
     fun searchPage(
         @RequestParam accessToken: String,
-        @RequestParam(required = false) query: String?
+        @RequestParam(required = false) query: String?,
+        @RequestParam(required = false) nextCursor: String?,
     ): SearchResponse {
-        return searchService.searchPage(accessToken, query)
+        return searchService.searchPage(accessToken, query, nextCursor)
     }
 }

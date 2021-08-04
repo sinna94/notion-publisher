@@ -1,5 +1,5 @@
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { getAccessToken } from '../Storage';
+import { getAccessToken } from '../util/Storage';
 
 export const PrivateRoute = ({ children, ...rest }: RouteProps) => {
   const accessToken = getAccessToken();

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { get } from '../request/request';
-import { setSessionStorage } from '../Storage';
+import { setSessionStorage } from '../util/Storage';
 
 interface AuthResponse {
   accessToken: string;
