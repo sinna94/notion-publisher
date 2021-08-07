@@ -6,12 +6,13 @@ import { Layout } from './Layout';
 
 export const Search = (): ReactElement => {
   const [searchResult, setSearchResult] = useState<SearchResponse | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const getSearchResponse = async (
     nextCursor?: string,
   ) => {
+    setLoading(true);
     const params = { nextCursor }
-    console.log(params);
     const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
       const results: Result[] = (searchResult?.results ?? [])
@@ -19,9 +20,11 @@ export const Search = (): ReactElement => {
       const newSearchResult: SearchResponse = { ...response.data, results }
       setSearchResult(newSearchResult);
     }
+    setLoading(false);
   }
 
   const onClickButton = async () => {
+    setSearchResult(undefined);
     await getSearchResponse();
   };
 
@@ -30,7 +33,7 @@ export const Search = (): ReactElement => {
       <button type="button" onClick={onClickButton}>
         검색
       </button>
-      <PageInfo searchResult={searchResult} getSearchResponse={getSearchResponse} />
+      <PageInfo searchResult={searchResult} getSearchResponse={getSearchResponse} loading={loading} />
     </Layout>
   );
 };

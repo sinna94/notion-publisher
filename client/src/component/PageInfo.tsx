@@ -1,4 +1,4 @@
-import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
+import { CircularProgress, Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useState } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { BlockType, Color, Content, Property, RichTextObject, SearchResponse } from '../interface';
@@ -8,13 +8,13 @@ import { Preview } from './Preview';
 interface Props {
     searchResult: SearchResponse | undefined;
     getSearchResponse: (nextCursor?: string) => void;
+    loading: boolean;
 }
 
 const parentIdMap = new Map<string, number>();
 
 export const PageInfo: React.FC<Props> = (props: Props) => {
     const [pageHtml, setPageHtml] = useState('');
-    const [loading, setLoading] = useState(false);
 
     const { searchResult } = props;
 
@@ -42,11 +42,9 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
     };
 
     const handleInfiniteOnLoad = async () => {
-        // setLoading(true);
-        if (searchResult?.nextCursor) {
+        if (searchResult?.nextCursor && !props.loading) {
             props.getSearchResponse(searchResult?.nextCursor);
         }
-        // setLoading(false);
     }
 
     const style = { 'height': 'calc(100vh - 64px)', 'overflow': 'auto', 'padding': '0' };
@@ -55,13 +53,20 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
         <Grid container spacing={2}>
             <Grid item xs={6}>
                 <List style={style}>
-                    {titleList?.map(titleInfo => {
+                    {titleList?.map((titleInfo, index) => {
                         return (
-                            <ListItem key={titleInfo.id} onClick={() => onClickPageId(titleInfo.id)} style={{ 'cursor': 'pointer' }}>
+                            <ListItem key={`${index}-${titleInfo.id}`} onClick={() => onClickPageId(titleInfo.id)} style={{ 'cursor': 'pointer' }}>
                                 <ListItemText primary={titleInfo.title} secondary={titleInfo.updateAt} />
                             </ListItem>
                         )
                     })}
+                    {props.loading &&
+                        (
+                            <ListItem style={{ 'justifyContent': 'center', 'marginBottom': '5px' }}>
+                                {<CircularProgress size={60} />}
+                            </ListItem>
+                        )
+                    }
                     <Waypoint onEnter={handleInfiniteOnLoad} />
                 </List>
             </Grid>
