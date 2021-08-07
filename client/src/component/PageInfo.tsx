@@ -74,6 +74,9 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
                 </div>
                 <Divider type='vertical' />
             </Col>
+            <Col flex='auto'>
+                <Preview html={pageHtml} />
+            </Col>
         </Row >
     );
 };
@@ -193,7 +196,8 @@ function parseText(text: RichTextObject) {
 
     const { annotations, plain_text, href } = text;
     const { bold, code, color, italic, strikethrough, underline } = annotations;
-    const colorText = parseColor(color, plain_text);
+    const replacedText = plain_text.replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    const colorText = parseColor(color, replacedText);
 
     if (bold) {
         tag += `<strong>`;
