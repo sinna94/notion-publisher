@@ -1,6 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { Layout as AntdLayout, Menu } from 'antd';
-import { Footer, Header, Content } from 'antd/lib/layout/layout';
+import { AppBar, Button, Container, Toolbar } from "@material-ui/core";
 
 export const Layout: React.FC = (props) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -21,23 +20,25 @@ export const Layout: React.FC = (props) => {
   const { children } = props;
 
   const style = {
-    'height': '100vh',
+    'height': '100%',
   }
 
   return (
-    <AntdLayout className="layout" style={style}>
-      <Header style={{ direction: 'rtl' }}>
-        <Menu theme="dark" mode="horizontal">
-          <Menu.Item key='auth' onClick={onClickLogin} >노션 로그인</Menu.Item>
-          <Menu.Item key='search' onClick={onClickSearch} >검색</Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <div className="site-layout-content">
-          {children}
-        </div>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-    </AntdLayout>
+    <div className="layout" style={style}>
+      <AppBar position={"static"} style={{'direction': 'rtl'}}>
+        <Toolbar>
+          <Button color={"inherit"} onClick={onClickLogin}>
+            노션 로그인
+          </Button>
+          <Button color={"inherit"} onClick={onClickSearch}>
+            페이지 검색
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Container>
+        {children}
+      </Container>
+      <footer style={{ textAlign: 'center' }}></footer>
+    </div>
   )
 }

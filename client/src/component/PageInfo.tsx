@@ -1,6 +1,6 @@
-import { Col, Divider, List, Row } from 'antd';
+import { Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroller';
+import { Waypoint } from 'react-waypoint';
 import { BlockType, Color, Content, Property, RichTextObject, SearchResponse } from '../interface';
 import { get } from '../request/request';
 import { Preview } from './Preview';
@@ -43,41 +43,32 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
 
     const handleInfiniteOnLoad = async () => {
         // setLoading(true);
-        props.getSearchResponse(searchResult?.nextCursor);
+        if (searchResult?.nextCursor) {
+            props.getSearchResponse(searchResult?.nextCursor);
+        }
         // setLoading(false);
     }
 
-    return (
-        <Row>
-            <Col flex='auto'>
-                <div style={{ 'height': 'calc(100vh - 150px)', 'overflow': 'auto' }}>
-                    <InfiniteScroll
-                        loadMore={handleInfiniteOnLoad}
-                        hasMore={!loading && searchResult?.hasMore}
-                    >
-                        <List
-                            dataSource={titleList}
-                            renderItem={titleInfo => (
-                                <List.Item
-                                    key={titleInfo.id}
-                                    onClick={() => onClickPageId(titleInfo.id)}
-                                >
-                                    <List.Item.Meta
-                                        title={titleInfo.title}
-                                        description={titleInfo.updateAt}
-                                    />
-                                </List.Item>
-                            )}
+    const style = { 'height': 'calc(100vh - 64px)', 'overflow': 'auto', 'padding': '0' };
 
-                        />
-                    </InfiniteScroll>
-                </div>
-                <Divider type='vertical' />
-            </Col>
-            <Col flex='auto'>
+    return (
+        <Grid container spacing={2}>
+            <Grid item xs={6}>
+                <List style={style}>
+                    {titleList?.map(titleInfo => {
+                        return (
+                            <ListItem key={titleInfo.id} onClick={() => onClickPageId(titleInfo.id)} style={{ 'cursor': 'pointer' }}>
+                                <ListItemText primary={titleInfo.title} secondary={titleInfo.updateAt} />
+                            </ListItem>
+                        )
+                    })}
+                    <Waypoint onEnter={handleInfiniteOnLoad} />
+                </List>
+            </Grid>
+            <Grid item xs={6}>
                 <Preview html={pageHtml} />
-            </Col>
-        </Row >
+            </Grid>
+        </Grid>
     );
 };
 

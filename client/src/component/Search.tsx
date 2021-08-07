@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { get } from '../request';
-import { SearchResponse } from '../interface';
+import { Result, SearchResponse } from '../interface';
 import { PageInfo } from './PageInfo';
 import { Layout } from './Layout';
 
@@ -14,7 +14,10 @@ export const Search = (): ReactElement => {
     console.log(params);
     const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
-      setSearchResult(response.data);
+      const results: Result[] = (searchResult?.results ?? [])
+      results.push(...response.data.results);
+      const newSearchResult: SearchResponse = { ...response.data, results }
+      setSearchResult(newSearchResult);
     }
   }
 

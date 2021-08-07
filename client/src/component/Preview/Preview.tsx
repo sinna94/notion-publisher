@@ -6,5 +6,6 @@ interface Props {
 
 export const Preview = (props: Props) => {
   const { html } = props;
-  return <div className='preview'>{parse(html)}</div>;
+  const style = { 'height': 'calc(100vh - 64px)', 'overflow': 'auto' };
+  return <div style={style} className='preview'>{parse(html)}</div>;
 };
