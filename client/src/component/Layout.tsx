@@ -40,10 +40,10 @@ export const Layout: React.FC = (props) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {workspaceName ?? ''}
           </Typography>
-          <Button color={"inherit"} onClick={onClickSearch}>
+          <Button color='secondary' onClick={onClickSearch}>
             페이지 검색
           </Button>
-          <Button color={"inherit"} onClick={onClickLogin}>
+          <Button color='secondary' onClick={onClickLogin}>
             {workspaceName ? '로그아웃' : '노션 로그인'}
           </Button>
         </Toolbar>

@@ -18,7 +18,6 @@ export const Search = (): ReactElement => {
     const params = { nextCursor, query };
     const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
-      console.log(searchResult?.results);
       const results: Result[] = nextCursor ? (searchResult?.results ?? []) : []
       results.push(...response.data.results);
       const newSearchResult: SearchResponse = { ...response.data, results }
@@ -39,8 +38,6 @@ export const Search = (): ReactElement => {
     setQuery(value === '' ? undefined : value);
   }
 
-  console.log(searchResult);
-
   return (
     <Layout>
       <OutlinedInput
@@ -52,6 +49,7 @@ export const Search = (): ReactElement => {
             <SearchIcon />
           </InputAdornment>
         }
+        placeholder='검색할 페이지 제목을 입력하세요.'
         style={{
           'width': '100%',
           'margin': '5px',

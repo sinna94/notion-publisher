@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, List, ListItem, ListItemText } from '@material-ui/core';
+import { CircularProgress, Divider, Grid, List, ListItem, ListItemText } from '@material-ui/core';
 import { useState } from 'react';
 import { Waypoint } from 'react-waypoint';
 import { BlockType, Color, Content, Property, RichTextObject, SearchResponse } from '../interface';
@@ -55,15 +55,18 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
                 <List style={style}>
                     {titleList?.map((titleInfo, index) => {
                         return (
-                            <ListItem key={`${index}-${titleInfo.id}`} onClick={() => onClickPageId(titleInfo.id)} style={{ 'cursor': 'pointer' }}>
-                                <ListItemText primary={titleInfo.title} secondary={titleInfo.updateAt} />
-                            </ListItem>
+                            <>
+                                <ListItem key={`${index}-${titleInfo.id}`} onClick={() => onClickPageId(titleInfo.id)} style={{ 'cursor': 'pointer' }}>
+                                    <ListItemText primary={titleInfo.title} secondary={titleInfo.updateAt} />
+                                </ListItem>
+                                <Divider />
+                            </>
                         )
                     })}
                     {props.loading &&
                         (
                             <ListItem style={{ 'justifyContent': 'center', 'marginBottom': '5px' }}>
-                                {<CircularProgress size={60} />}
+                                {<CircularProgress size={60} color='secondary' />}
                             </ListItem>
                         )
                     }
