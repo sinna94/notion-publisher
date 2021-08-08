@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.4.0"],
             ["@emotion/styled", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.3.0"],
             ["@material-ui/core", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.2"],
+            ["@material-ui/icons", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.1"],
             ["@testing-library/jest-dom", "npm:5.14.1"],
             ["@testing-library/react", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.2.7"],
             ["@testing-library/user-event", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:12.8.3"],
@@ -4748,6 +4749,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/react-dom",
             "@types/react",
             "react-dom",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@material-ui/icons", [
+        ["npm:5.0.0-beta.1", {
+          "packageLocation": "./.yarn/cache/@material-ui-icons-npm-5.0.0-beta.1-430a46836a-fab3b0a21d.zip/node_modules/@material-ui/icons/",
+          "packageDependencies": [
+            ["@material-ui/icons", "npm:5.0.0-beta.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.1", {
+          "packageLocation": "./.yarn/__virtual__/@material-ui-icons-virtual-9487402ad9/0/cache/@material-ui-icons-npm-5.0.0-beta.1-430a46836a-fab3b0a21d.zip/node_modules/@material-ui/icons/",
+          "packageDependencies": [
+            ["@material-ui/icons", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.1"],
+            ["@babel/runtime", "npm:7.14.8"],
+            ["@material-ui/core", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.2"],
+            ["@types/material-ui__core", null],
+            ["@types/react", "npm:17.0.15"],
+            ["react", "npm:17.0.2"]
+          ],
+          "packagePeers": [
+            "@material-ui/core",
+            "@types/material-ui__core",
+            "@types/react",
             "react"
           ],
           "linkType": "HARD",
@@ -15347,6 +15375,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@emotion/react", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.4.0"],
             ["@emotion/styled", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.3.0"],
             ["@material-ui/core", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.2"],
+            ["@material-ui/icons", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:5.0.0-beta.1"],
             ["@testing-library/jest-dom", "npm:5.14.1"],
             ["@testing-library/react", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:11.2.7"],
             ["@testing-library/user-event", "virtual:7aaff057e102054c14577fb66e401e1590a8e4a6c93e5b4f8258b0a0b31e64edfe6a518bf6c2b54b6a2c37d9ae126b89c1b2e7de2a0866d73f0d3dabea2ff2f7#npm:12.8.3"],

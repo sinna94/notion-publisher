@@ -47,7 +47,7 @@ export const PageInfo: React.FC<Props> = (props: Props) => {
         }
     }
 
-    const style = { 'height': 'calc(100vh - 64px)', 'overflow': 'auto', 'padding': '0' };
+    const style = { 'height': 'calc(100vh - 120px)', 'overflow': 'auto', 'padding': '0' };
 
     return (
         <Grid container spacing={2}>
