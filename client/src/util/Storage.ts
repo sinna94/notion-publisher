@@ -9,3 +9,7 @@ export const getSessionStorageValue = (key: string): string | null => {
 export const getAccessToken = (): string | null => {
   return sessionStorage.getItem('accessToken');
 };
+
+export const getWorkspaceName = (): string | null => {
+  return sessionStorage.getItem('workspaceName');
+}

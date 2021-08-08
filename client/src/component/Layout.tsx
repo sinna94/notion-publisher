@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
-import { AppBar, Button, Container, Toolbar } from "@material-ui/core";
+import { AppBar, Avatar, Button, Container, Toolbar, Typography } from "@material-ui/core";
+import { getWorkspaceName } from "../util/Storage";
 
 export const Layout: React.FC = (props) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -23,15 +24,27 @@ export const Layout: React.FC = (props) => {
     'height': '100%',
   }
 
+  const workspaceName = getWorkspaceName()
+
   return (
     <div className="layout" style={style}>
-      <AppBar position={"static"} style={{'direction': 'rtl'}}>
+      <AppBar position={"static"}>
         <Toolbar>
-          <Button color={"inherit"} onClick={onClickLogin}>
-            노션 로그인
-          </Button>
+          <Avatar
+            alt="Notion Publisher"
+            src={`${process.env.PUBLIC_URL}/NotionPublisher_192.png`}
+            sx={{ width: 40, height: 40 }}
+            variant="square"
+            style={{ 'alignSelf': 'center', 'marginRight': '5px' }}
+          />
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            {workspaceName ?? ''}
+          </Typography>
           <Button color={"inherit"} onClick={onClickSearch}>
             페이지 검색
+          </Button>
+          <Button color={"inherit"} onClick={onClickLogin}>
+            {workspaceName ? '로그아웃' : '노션 로그인'}
           </Button>
         </Toolbar>
       </AppBar>
