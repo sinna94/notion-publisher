@@ -1,5 +1,4 @@
-import { ThemeProvider } from '@emotion/react';
-import { createTheme } from '@material-ui/core';
+import { createTheme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

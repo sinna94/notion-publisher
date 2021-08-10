@@ -15,7 +15,7 @@ export const Layout: React.FC = (props) => {
   }
 
   const onClickSearch = () => {
-    history.push('search');
+    history.push('/search');
   }
 
   const { children } = props;
@@ -48,7 +48,7 @@ export const Layout: React.FC = (props) => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Container>
+      <Container style={{height: 'calc(100vh - 120px)'}}>
         {children}
       </Container>
       <footer style={{ textAlign: 'center' }}></footer>

@@ -53,6 +53,7 @@ export const Search = (): ReactElement => {
         style={{
           'width': '100%',
           'margin': '5px',
+          'marginLeft': 0,
           'height': '40px',
         }}
       />
