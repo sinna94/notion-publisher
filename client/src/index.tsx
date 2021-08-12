@@ -18,13 +18,13 @@ const theme = createTheme({
       light: '#8192da',
       dark: '#1b3b79',
       contrastText: '#ffffff',
-    }
+    },
   },
 });
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme} >
+    <ThemeProvider theme={theme}>
       <Router />
     </ThemeProvider>
   </React.StrictMode>,

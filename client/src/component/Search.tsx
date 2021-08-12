@@ -11,50 +11,48 @@ export const Search = (): ReactElement => {
   const [searchResult, setSearchResult] = useState<SearchResponse | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const getSearchResponse = async (
-    nextCursor?: string,
-  ) => {
+  const getSearchResponse = async (nextCursor?: string) => {
     setLoading(true);
     const params = { nextCursor, query };
     const response = await get<SearchResponse>('/search', { params });
     if (response?.data) {
-      const results: Result[] = nextCursor ? (searchResult?.results ?? []) : []
+      const results: Result[] = nextCursor ? searchResult?.results ?? [] : [];
       results.push(...response.data.results);
-      const newSearchResult: SearchResponse = { ...response.data, results }
+      const newSearchResult: SearchResponse = { ...response.data, results };
       setSearchResult(newSearchResult);
     }
     setLoading(false);
-  }
+  };
 
   const onKeyDown = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setSearchResult(undefined);
       await getSearchResponse();
     }
-  }
+  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value === '' ? undefined : value);
-  }
+  };
 
   return (
     <Layout>
       <OutlinedInput
-        key='search-input'
+        key="search-input"
         onKeyDown={onKeyDown}
         onChange={onChange}
         startAdornment={
-          <InputAdornment position='start'>
+          <InputAdornment position="start">
             <SearchIcon />
           </InputAdornment>
         }
-        placeholder='검색할 페이지 제목을 입력하세요.'
+        placeholder="검색할 페이지 제목을 입력하세요."
         style={{
-          'width': '100%',
-          'margin': '5px',
-          'marginLeft': 0,
-          'height': '40px',
+          width: '100%',
+          margin: '5px',
+          marginLeft: 0,
+          height: '40px',
         }}
       />
       <PageInfo searchResult={searchResult} getSearchResponse={getSearchResponse} loading={loading} />

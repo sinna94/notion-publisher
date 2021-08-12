@@ -12,4 +12,4 @@ export const getAccessToken = (): string | null => {
 
 export const getWorkspaceName = (): string | null => {
   return sessionStorage.getItem('workspaceName');
-}
+};
