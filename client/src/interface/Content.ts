@@ -33,6 +33,16 @@ export interface Content {
   toDo: ToDo | undefined;
   unsupported: any | undefined;
   childPage: any | undefined;
+  image: Image | undefined;
+}
+
+interface Image {
+  caption: string[],
+  type: string,
+  url: string,
+  file:{
+    expiry_time: string
+  }
 }
 
 interface ContentText {

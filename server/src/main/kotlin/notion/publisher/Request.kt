@@ -34,7 +34,7 @@ fun <T> postRequest(url: String, body: Map<String, String>, token: String, cls: 
 
 fun <T> getRequest(url: String, params: Map<String, String>, token: String, cls: Class<T>): T {
 
-    val urlWithParams = if (params.count() > 0) {
+    val urlWithParams = if (params.isNotEmpty()) {
         url + "?" + params.map { "${it.key}=${it.value}" }.joinToString("&")
     } else {
         url

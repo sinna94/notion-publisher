@@ -22,6 +22,7 @@ data class Block(
     val toDo: Any? = null,
     val unsupported: Any? = null,
     val childPage: Any? = null,
+    val image: Any? = null,
 )
 
 enum class BlockType {
