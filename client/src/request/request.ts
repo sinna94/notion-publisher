@@ -15,8 +15,8 @@ const tokenConfig = (config?: AxiosRequestConfig): AxiosRequestConfig => {
 };
 
 export const get = async <T, R = AxiosResponse<T>>(url: string, config?: AxiosRequestConfig): Promise<R> => {
-  const response = await axios.get<T, R>(url, tokenConfig(config));
-  return response;
+  const serverUrl = process.env.REACT_APP_SERVER ?? '';
+  return await axios.get<T, R>(serverUrl + url, tokenConfig(config));
 };
 
 export const post = async <T, R = AxiosResponse<T>>(
@@ -24,6 +24,6 @@ export const post = async <T, R = AxiosResponse<T>>(
   data?: any,
   config?: AxiosRequestConfig,
 ): Promise<R> => {
-  const response = await axios.post<T, R>(url, data, tokenConfig(config));
-  return response;
+  const serverUrl = process.env.REACT_APP_SERVER ?? '';
+  return await axios.post<T, R>(serverUrl + url, data, tokenConfig(config));
 };

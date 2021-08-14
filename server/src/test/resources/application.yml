@@ -1,0 +1,3 @@
+notion:
+  basic-token: test-token
+  redirect-uri: localhost:3000

@@ -28,7 +28,7 @@ internal class SearchControllerTest {
 
     @Test
     fun searchPage() {
-        Mockito.`when`(searchService.searchPage("token", null, nextCursor))
+        Mockito.`when`(searchService.searchPage("token", null, null))
             .thenReturn(
                 SearchResponse(false, null, "", emptyList())
             )
