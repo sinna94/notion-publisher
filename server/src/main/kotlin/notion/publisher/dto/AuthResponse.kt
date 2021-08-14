@@ -5,5 +5,6 @@ data class AuthResponse(
     val workspaceName: String = "",
     val workspaceIcon: String = "",
     val botId: String = "",
-    val tokenType: String = ""
+    val tokenType: String = "",
+    val workspaceId: String = "",
 )
