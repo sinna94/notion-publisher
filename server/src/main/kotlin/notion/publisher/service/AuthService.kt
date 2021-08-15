@@ -3,7 +3,7 @@ package notion.publisher.service
 import notion.publisher.NOTION_API
 import notion.publisher.dto.AuthResponse
 import notion.publisher.getBasicToken
-import notion.publisher.postRequest
+import notion.publisher.util.postRequest
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 

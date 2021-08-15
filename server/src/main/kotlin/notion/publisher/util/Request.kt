@@ -1,6 +1,9 @@
-package notion.publisher
+package notion.publisher.util
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import notion.publisher.NOTION_VERSION
+import notion.publisher.dto.NotionError
+import notion.publisher.util.JsonBodyHandler
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest

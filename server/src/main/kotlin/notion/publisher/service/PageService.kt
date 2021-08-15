@@ -3,11 +3,13 @@ package notion.publisher.service
 import notion.publisher.NOTION_API
 import notion.publisher.dto.Block
 import notion.publisher.dto.BlockType
-import notion.publisher.getRequest
+import notion.publisher.util.getRequest
+import notion.publisher.util.Log
 import org.springframework.stereotype.Service
 
 @Service
 class PageService {
+    companion object : Log()
 
     private val url = "$NOTION_API/blocks"
 
@@ -26,10 +28,13 @@ class PageService {
     }
 
     fun getPageContent(token: String, pageId: String): Block {
+        logger().info("Start get Page Info : $pageId")
         val block = requestPageContent(pageId, token)
 
+        logger().info("get Child Content : $pageId")
         getChildContent(token, block)
 
+        logger().info("Finish get Page Info : $pageId")
         return block
     }
 }

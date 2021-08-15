@@ -23,7 +23,7 @@ data class Block(
     val unsupported: Any? = null,
     val childPage: Any? = null,
     val image: Any? = null,
-)
+) : NotionError()
 
 enum class BlockType {
     paragraph,

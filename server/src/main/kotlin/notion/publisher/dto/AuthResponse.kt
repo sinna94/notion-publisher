@@ -7,4 +7,10 @@ data class AuthResponse(
     val botId: String = "",
     val tokenType: String = "",
     val workspaceId: String = "",
+    val owner: Owner = Owner(true, ""),
+):NotionError()
+
+data class Owner(
+    val workspace: Boolean,
+    val type: String,
 )

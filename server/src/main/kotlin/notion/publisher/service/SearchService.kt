@@ -3,11 +3,15 @@ package notion.publisher.service
 import notion.publisher.NOTION_API
 import notion.publisher.dto.SearchResponse
 import notion.publisher.getBearerToken
-import notion.publisher.postRequest
+import notion.publisher.util.postRequest
+import notion.publisher.util.Log
 import org.springframework.stereotype.Service
 
 @Service
 class SearchService {
+
+    companion object: Log()
+
     fun searchPage(
         accessToken: String,
         query: String?,
@@ -24,7 +28,12 @@ class SearchService {
             data["start_cursor"] = nextCursor
         }
 
+        logger().info("start search page content : $data")
+
         val searchResponse = postRequest(url, data, getBearerToken(accessToken), SearchResponse::class.java)
+
+        logger().info("finish search page content : $data")
+
         return SearchResponse(
             searchResponse.hasMore,
             searchResponse.nextCursor,

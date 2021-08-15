@@ -34,4 +34,5 @@ yarn-error.log*
 *.iml
 
 */application-local.yml
-**/.gradle
+.gradle
+/server/.gradle/

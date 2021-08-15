@@ -5,7 +5,7 @@ data class SearchResponse(
     val nextCursor: String? = null,
     val `object`: String = "",
     val results: List<Result> = emptyList()
-)
+) : NotionError()
 
 data class Result(
     val `object`: String = "",
