@@ -3,12 +3,9 @@ package notion.publisher.util
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import notion.publisher.dto.NotionError
-import notion.publisher.exception.NotionException
 import java.io.IOException
 import java.io.InputStream
 import java.io.UncheckedIOException
-import java.lang.Exception
 import java.net.http.HttpResponse
 import java.net.http.HttpResponse.BodySubscriber
 import java.util.function.Supplier
